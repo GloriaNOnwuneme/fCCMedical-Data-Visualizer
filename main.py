@@ -1,4 +1,9 @@
 # This entrypoint file to be used in development. Start by reading README.md
+
+#Source notes: 
+# I referred to this .catplot() tutorial: https://www.geeksforgeeks.org/python-seaborn-catplot/
+#I also referred to this heatmap tutorial: https://www.geeksforgeeks.org/create-a-correlation-matrix-using-python/?ref=header_search
+
 import medical_data_visualizer
 from unittest import main
 
