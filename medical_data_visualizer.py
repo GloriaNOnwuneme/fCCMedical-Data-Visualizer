@@ -18,7 +18,7 @@ df.loc[:,'gluc'] = np.array([0 if n<=1 else 1 for n in df['gluc']])
 # 4
 def draw_cat_plot():
     # 5
-    df_cat = df[['cholesterol','gluc','smoke','alco','active','cardio']]
+    df_cat = df[['active', 'alco', 'cholesterol', 'gluc', 'overweight', 'smoke', 'cardio']]
 
 
     # 6
@@ -31,11 +31,11 @@ def draw_cat_plot():
 
 
     # 8
-    fig = sns.catplot(data=df_long, x='variable', row=None, col='cardio', hue='value', kind='count', color=None, palette=None, legend='auto', legend_out=True,)
-
+    fig = sns.catplot(data=df_long, x='variable', col='cardio', hue='value', kind='count', legend='auto', legend_out=True).set_axis_labels('variable', 'total').fig
 
     # 9
     fig.savefig('catplot.png')
+
     return fig
 
 
@@ -50,13 +50,14 @@ def draw_heat_map():
 
 
     # 12
-    corr = df.corr().loc['age':, :'cardio']
+    corr = df_heat.corr()
+
 
     #Changed from corr = df.loc[:, 'age':].corr().loc['sex':, :'cardio'] to pass freeCodeCamp requirements
     #filtered to exclude like-like correlations (and their associated axis ticks)
 
     # 13
-    mask = np.reshape([False if j<=i else True for i in range(len(corr)) for j in range(len(corr))], (len(corr), len(corr)) )
+    mask = np.reshape([False if j<i else True for i in range(len(corr)) for j in range(len(corr))], (len(corr), len(corr)) )
 
     # 14
     fig, ax = plt.subplots(figsize=(12,8))
